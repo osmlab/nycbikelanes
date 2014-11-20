@@ -13,3 +13,4 @@ Collaborators
 
 * [Eric Brelsford](https://github.com/ebrelsford)
 * [Colin Reilly](https://github.com/colinreilly)
+* [Chris Henrick](https://github.com/clhenrick)

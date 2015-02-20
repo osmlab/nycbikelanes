@@ -32,3 +32,6 @@ osm_bikelanes: clean_osm
 
 nyc_bikelanes:
 	mkdir -p data/nyc
+
+normalize_cscl_bike_routes:
+	ogr2ogr -simplify 0.2 -t_srs EPSG:4326 data/cscl_bike_routes/cscl_bike_routes.shp data/cscl_bike_routes/original/CSCL_BikeRoute.shp

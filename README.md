@@ -16,17 +16,13 @@ Currently it clips to NYC borders (not just the bounding box) and attempts to
 select just the features that are bicycle-related. Run the following to get OSM
 data:
 
-    ```
     make boroughs osm_bikelanes
-    ```
 
 The city's latest bike lane data is in `data/cscl_bike_routes/original`. This
 data is not currently available online, otherwise we would download it from
 there. We have reprojected and simplified it, and you can do the same with:
 
-    ```
     make normalize_cscl_bike_routes
-    ```
 
 
 Collaborators

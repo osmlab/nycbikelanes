@@ -32,7 +32,5 @@ osm_bikelanes: clean_osm
 	rm $(datadir)/new-york_new-york.osm-*
 
 nyc_bikelanes:
-	mkdir -p data/nyc
-
-normalize_cscl_bike_routes:
-	ogr2ogr -simplify 0.2 -t_srs EPSG:4326 data/cscl_bike_routes/cscl_bike_routes.shp data/cscl_bike_routes/original/CSCL_BikeRoute.shp
+	rm -f $(datadir)/nyclines.*
+	ogr2ogr -simplify 0.2 -t_srs EPSG:4326 $(datadir)/nyclines.shp $(datadir)/cscl_bike_routes/original/CSCL_BikeRoute.shp

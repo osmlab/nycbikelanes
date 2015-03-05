@@ -1,4 +1,4 @@
-osmdir = data/osm
+datadir = data
 bicyclewhere = "highway='cycleway' or (bicycle is not null and bicycle != 'no')"
 
 clean_boroughs:
@@ -16,19 +16,20 @@ boroughs: clean_boroughs
 	ogr2ogr -simplify 0.2 -t_srs EPSG:4326 -overwrite data/boroughs/dissolved.shp data/boroughs/nybbwi_14d/nybbwi.shp -dialect sqlite -sql "select ST_union(ST_buffer(Geometry,0.001)) from nybbwi"
 
 clean_osm:
-	rm -rf $(osmdir)
+	rm -rf $(datadir)/osmlines.*
+	rm -rf $(datadir)/osm.zip
 
 osm_bikelanes: clean_osm
-	mkdir -p $(osmdir)
+	mkdir -p $(datadir)
 	@echo "Downloading OSM data..."
-	curl -L "https://s3.amazonaws.com/metro-extracts.mapzen.com/new-york_new-york.osm2pgsql-shapefiles.zip" -o $(osmdir)/osm.zip
-	unzip $(osmdir)/osm.zip -d $(osmdir)
+	curl -L "https://s3.amazonaws.com/metro-extracts.mapzen.com/new-york_new-york.osm2pgsql-shapefiles.zip" -o $(datadir)/osm.zip
+	unzip $(datadir)/osm.zip -d $(datadir)
 	
 	@echo "Filtering and clipping"
-	ogr2ogr -clipsrc data/boroughs/dissolved.shp -simplify 0.2 -t_srs EPSG:4326 $(osmdir)/lines.shp $(osmdir)/*line.shp -where $(bicyclewhere)
+	ogr2ogr -clipsrc data/boroughs/dissolved.shp -t_srs EPSG:4326 $(datadir)/osmlines.shp $(datadir)/*line.shp -where $(bicyclewhere)
 	
 	@echo "Deleting original files"
-	rm $(osmdir)/new-york_new-york.osm-*
+	rm $(datadir)/new-york_new-york.osm-*
 
 nyc_bikelanes:
 	mkdir -p data/nyc

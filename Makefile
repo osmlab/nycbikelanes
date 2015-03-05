@@ -34,3 +34,9 @@ osm_bikelanes: clean_osm
 nyc_bikelanes:
 	rm -f $(datadir)/nyclines.*
 	ogr2ogr -simplify 0.2 -t_srs EPSG:4326 $(datadir)/nyclines.shp $(datadir)/cscl_bike_routes/original/CSCL_BikeRoute.shp
+
+osm_pgsql:
+	ogr2ogr -skipfailures -overwrite -f PostgreSQL PG:"dbname='nycbikelanes' user='nycbikelanes'" $(datadir)/osmlines.shp -nln osmlines
+
+nyc_pgsql:
+	ogr2ogr -skipfailures -overwrite -f PostgreSQL PG:"dbname='nycbikelanes' user='nycbikelanes'" $(datadir)/nyclines.shp -nln nyclines

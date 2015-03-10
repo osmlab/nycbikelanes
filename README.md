@@ -11,6 +11,9 @@ OSM's bike lane data using the latest data available from the city.
 Data
 ----
 
+Currently the data is in two shapefiles: `data/nyclines.shp` and
+`data/osmlines.shp`. The data was created using the `Makefile`.
+
 The `Makefile` contains recipes for downloading an OSM extract for NYC.
 Currently it clips to NYC borders (not just the bounding box) and attempts to
 select just the features that are bicycle-related. Run the following to get OSM

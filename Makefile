@@ -37,7 +37,7 @@ osm_buffer:
 
 nyc_bikelanes:
 	rm -f $(datadir)/nyclines.*
-	ogr2ogr -simplify 0.2 -t_srs EPSG:4326 $(datadir)/nyclines.shp $(datadir)/cscl_bike_routes/original/CSCL_BikeRoute.shp
+	ogr2ogr -where "FT_Facilit NOT LIKE 'Potential Bicycle Route'" -simplify 0.2 -t_srs EPSG:4326 $(datadir)/nyclines.shp $(datadir)/cscl_bike_routes/original/CSCL_BikeRoute.shp
 
 osm_pgsql:
 	ogr2ogr -skipfailures -overwrite -f PostgreSQL PG:"dbname='nycbikelanes' user='nycbikelanes'" $(datadir)/osmlines.shp -nln osmlines

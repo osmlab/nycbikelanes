@@ -45,3 +45,7 @@ osm_pgsql:
 
 nyc_pgsql:
 	ogr2ogr -skipfailures -overwrite -f PostgreSQL PG:"dbname='nycbikelanes' user='nycbikelanes'" $(datadir)/nyclines.shp -nln nyclines
+
+city_not_osm:
+	rm challenges/city_not_osm/data.geojson
+	ogr2ogr -f "GeoJSON" challenges/city_not_osm/data.geojson PG:"dbname='nycbikelanes' user='nycbikelanes'" -sql "`cat challenges/city_not_osm/select_data.sql`"

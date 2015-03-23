@@ -3,6 +3,6 @@
     "description": "Add bike lanes from NYC city data that are missing in OSM",
     "blurb": "We're trying to get OSM's bike lane data up to speed with official city data. The first part of this effort is adding the bike lanes that appear not to exist in OSM's data.",
     "help": "TODO",
-    "instruction": "TODO",
+    "instruction": "See https://github.com/osmlab/nycbikelanes/blob/master/challenges/city_not_osm/directions.md",
     "difficulty": 2
 }

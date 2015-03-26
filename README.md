@@ -28,6 +28,11 @@ data:
 
     make boroughs osm_bikelanes
 
+You'll need [osmtogeojson](https://github.com/tyrasd/osmtogeojson) to run the 
+above recipe, you can install it with npm:
+
+    npm install -g osmtogeojson
+
 The city's latest bike lane data is in `data/cscl_bike_routes/original`. This
 data is not currently available online, otherwise we would download it from
 there. We have reprojected and simplified it, and you can do the same with:

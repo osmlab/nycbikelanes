@@ -1,5 +1,7 @@
 datadir = data
 
+all: boroughs osm_bikelanes osm_buffer osm_pgsql nyc_bikelanes city_not_osm
+
 clean_boroughs:
 	rm -rf data/boroughs data/nybbwi_14d data/boroughs.zip
 

@@ -11,6 +11,13 @@ OSM's bike lane data using the latest data available from the city.
 Data
 ----
 
+The simplest way to get going is to clone this repository, `cd` into it and run:
+
+    make
+
+This will download all the relevant data and process it, then create challenge
+data.
+
 Currently the data is in two shapefiles: `data/nyclines.shp` and
 `data/osmlines.shp`. The data was created using the `Makefile`.
 

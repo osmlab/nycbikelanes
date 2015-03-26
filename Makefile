@@ -1,4 +1,5 @@
 datadir = data
+facilit_exclude = 'Bike-Friendly Parking', 'Potential Bike Path', 'Potential Bike Route', 'Removed'
 
 all: osm nyc city_not_osm
 
@@ -44,7 +45,7 @@ osm: boroughs osm_bikelanes osm_buffer osm_pgsql
 
 nyc_bikelanes:
 	rm -f $(datadir)/nyclines.*
-	ogr2ogr -where "FT_Facilit NOT LIKE 'Potential Bicycle Route'" -simplify 0.2 -t_srs EPSG:4326 $(datadir)/nyclines.shp $(datadir)/cscl_bike_routes/original/CSCL_BikeRoute.shp
+	ogr2ogr -where "NOT (FT_Facilit = 'Bike-Friendly Parking' OR FT_Facilit ILIKE 'Potential%' OR FT_Facilit = 'Removed' OR TF_Facilit = 'Bike-Friendly Parking' OR TF_Facilit ILIKE 'Potential%' OR TF_Facilit = 'Removed')" -simplify 0.2 -t_srs EPSG:4326 $(datadir)/nyclines.shp $(datadir)/cscl_bike_routes/original/CSCL_BikeRoute.shp
 
 nyc_pgsql:
 	ogr2ogr -skipfailures -overwrite -f PostgreSQL PG:"dbname='nycbikelanes' user='nycbikelanes'" $(datadir)/nyclines.shp -nln nyclines

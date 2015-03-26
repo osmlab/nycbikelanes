@@ -22,14 +22,15 @@ clean_osm:
 osm_bikelanes: clean_osm
 	mkdir -p $(datadir)
 	@echo "Downloading OSM data..."
-	curl -L "https://s3.amazonaws.com/metro-extracts.mapzen.com/new-york_new-york.osm2pgsql-shapefiles.zip" -o $(datadir)/osm.zip
-	unzip $(datadir)/osm.zip -d $(datadir)
+	@echo "Heads up: you need to have osmtogeojson installed for this part: https://github.com/tyrasd/osmtogeojson"
+	wget -O $(datadir)/osmlines.json "http://overpass-api.de/api/interpreter?data=[out:json]; ( way[bicycle=yes](40.46,-74.28,40.93,-73.72); way[~\"cycleway\"~\".*\"](40.46,-74.28,40.93,-73.72); way[highway=cycleway](40.46,-74.28,40.93,-73.72);); out body; >; out skel qt;"
+	osmtogeojson $(datadir)/osmlines.json > $(datadir)/osmlines.geojson
 	
-	@echo "Filtering and clipping"
-	ogr2ogr -clipsrc data/boroughs/dissolved.shp -t_srs EPSG:4326 $(datadir)/osmlines.shp $(datadir)/*line.shp -where $(bicyclewhere)
+	@echo "Clipping"
+	ogr2ogr -clipsrc data/boroughs/dissolved.shp data/osmlines.shp data/osmlines.geojson -nlt LINESTRING
 	
 	@echo "Deleting original files"
-	rm $(datadir)/new-york_new-york.osm-*
+	rm $(datadir)/osmlines.json
 
 osm_buffer:
 	ogr2ogr -overwrite -t_srs EPSG:2263 $(datadir)/osmlines_2263.shp $(datadir)/osmlines.shp

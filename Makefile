@@ -1,5 +1,4 @@
 datadir = data
-bicyclewhere = "highway='cycleway' or (bicycle is not null and bicycle != 'no')"
 
 clean_boroughs:
 	rm -rf data/boroughs data/nybbwi_14d data/boroughs.zip

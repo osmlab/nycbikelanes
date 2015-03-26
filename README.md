@@ -18,13 +18,12 @@ The simplest way to get going is to clone this repository, `cd` into it and run:
 This will download all the relevant data and process it, then create challenge
 data.
 
-Currently the data is in two shapefiles: `data/nyclines.shp` and
-`data/osmlines.shp`. The data was created using the `Makefile`.
+The data is in two shapefiles: `data/nyclines.shp` and `data/osmlines.shp`. The
+data was created using the `Makefile`.
 
 The `Makefile` contains recipes for downloading an OSM extract for NYC.
-Currently it clips to NYC borders (not just the bounding box) and attempts to
-select just the features that are bicycle-related. Run the following to get OSM
-data:
+It clips to NYC borders (not just the bounding box) and attempts to select just
+the features that are bicycle-related. Run the following to get OSM data:
 
     make boroughs osm_bikelanes
 
@@ -34,8 +33,8 @@ above recipe, you can install it with npm:
     npm install -g osmtogeojson
 
 The city's latest bike lane data is in `data/cscl_bike_routes/original`. This
-data is not currently available online, otherwise we would download it from
-there. We have reprojected and simplified it, and you can do the same with:
+data is not available online, otherwise we would download it from there. We have
+reprojected and simplified it, and you can do the same with:
 
     make nyc_bikelanes
 

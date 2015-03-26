@@ -36,13 +36,13 @@ osm_buffer:
 	ogr2ogr -overwrite -t_srs EPSG:2263 $(datadir)/osmlines_2263.shp $(datadir)/osmlines.shp
 	ogr2ogr -overwrite -t_srs EPSG:4326 -f "ESRI Shapefile" $(datadir)/osmlines_buffer.shp $(datadir)/osmlines_2263.shp -dialect sqlite -sql "select ST_union(ST_buffer(Geometry, 15)) from osmlines_2263"
 
-nyc_bikelanes:
-	rm -f $(datadir)/nyclines.*
-	ogr2ogr -where "FT_Facilit NOT LIKE 'Potential Bicycle Route'" -simplify 0.2 -t_srs EPSG:4326 $(datadir)/nyclines.shp $(datadir)/cscl_bike_routes/original/CSCL_BikeRoute.shp
-
 osm_pgsql:
 	ogr2ogr -skipfailures -overwrite -f PostgreSQL PG:"dbname='nycbikelanes' user='nycbikelanes'" $(datadir)/osmlines.shp -nln osmlines -nlt GEOMETRY
 	ogr2ogr -skipfailures -overwrite -f PostgreSQL PG:"dbname='nycbikelanes' user='nycbikelanes'" $(datadir)/osmlines_buffer.shp -nln osmlines_buffer -nlt GEOMETRY
+
+nyc_bikelanes:
+	rm -f $(datadir)/nyclines.*
+	ogr2ogr -where "FT_Facilit NOT LIKE 'Potential Bicycle Route'" -simplify 0.2 -t_srs EPSG:4326 $(datadir)/nyclines.shp $(datadir)/cscl_bike_routes/original/CSCL_BikeRoute.shp
 
 nyc_pgsql:
 	ogr2ogr -skipfailures -overwrite -f PostgreSQL PG:"dbname='nycbikelanes' user='nycbikelanes'" $(datadir)/nyclines.shp -nln nyclines

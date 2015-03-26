@@ -17,7 +17,6 @@ boroughs: clean_boroughs
 
 clean_osm:
 	rm -rf $(datadir)/osmlines.*
-	rm -rf $(datadir)/osm.zip
 
 osm_bikelanes: clean_osm
 	mkdir -p $(datadir)

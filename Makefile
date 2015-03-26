@@ -1,6 +1,6 @@
 datadir = data
 
-all: boroughs osm_bikelanes osm_buffer osm_pgsql nyc_bikelanes city_not_osm
+all: osm nyc city_not_osm
 
 clean_boroughs:
 	rm -rf data/boroughs data/nybbwi_14d data/boroughs.zip
@@ -40,12 +40,16 @@ osm_pgsql:
 	ogr2ogr -skipfailures -overwrite -f PostgreSQL PG:"dbname='nycbikelanes' user='nycbikelanes'" $(datadir)/osmlines.shp -nln osmlines -nlt GEOMETRY
 	ogr2ogr -skipfailures -overwrite -f PostgreSQL PG:"dbname='nycbikelanes' user='nycbikelanes'" $(datadir)/osmlines_buffer.shp -nln osmlines_buffer -nlt GEOMETRY
 
+osm: boroughs osm_bikelanes osm_buffer osm_pgsql
+
 nyc_bikelanes:
 	rm -f $(datadir)/nyclines.*
 	ogr2ogr -where "FT_Facilit NOT LIKE 'Potential Bicycle Route'" -simplify 0.2 -t_srs EPSG:4326 $(datadir)/nyclines.shp $(datadir)/cscl_bike_routes/original/CSCL_BikeRoute.shp
 
 nyc_pgsql:
 	ogr2ogr -skipfailures -overwrite -f PostgreSQL PG:"dbname='nycbikelanes' user='nycbikelanes'" $(datadir)/nyclines.shp -nln nyclines
+
+nyc: nyc_bikelanes nyc_pgsql
 
 city_not_osm:
 	rm challenges/city_not_osm/data.geojson

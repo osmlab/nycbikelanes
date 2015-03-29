@@ -1,4 +1,5 @@
 """
-Find data that is in the city's files but not in the OSM files, create tasks,
-and upload to MapRoulette.
+Provide instructions for adding a bike lane given its properties.
 """
+def instruction(properties):
+    return 'Add this class %s bike lane' % properties['facilitycl']

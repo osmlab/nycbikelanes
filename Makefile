@@ -45,7 +45,10 @@ osm: boroughs osm_bikelanes osm_buffer osm_pgsql
 
 nyc_bikelanes:
 	rm -f $(datadir)/nyclines.*
-	ogr2ogr -where "NOT (FT_Facilit = 'Bike-Friendly Parking' OR FT_Facilit ILIKE 'Potential%' OR FT_Facilit = 'Removed' OR TF_Facilit = 'Bike-Friendly Parking' OR TF_Facilit ILIKE 'Potential%' OR TF_Facilit = 'Removed')" -simplify 0.2 -t_srs EPSG:4326 $(datadir)/nyclines.shp $(datadir)/cscl_bike_routes/original/CSCL_BikeRoute.shp
+	ogr2ogr -t_srs EPSG:4326 -f "ESRI Shapefile" $(datadir)/cscl_bike_routes/merge.shp $(datadir)/cscl_bike_routes/update_20140401/DOTBikeRouteChanges_20141117to20150320.shp 
+	ogr2ogr -t_srs EPSG:4326 -f "ESRI Shapefile" -update -append $(datadir)/cscl_bike_routes/merge.shp $(datadir)/cscl_bike_routes/original/CSCL_BikeRoute.shp  -nln merge             
+	ogr2ogr -where "NOT (FT_Facilit = 'Bike-Friendly Parking' OR FT_Facilit ILIKE 'Potential%' OR FT_Facilit = 'Removed' OR TF_Facilit = 'Bike-Friendly Parking' OR TF_Facilit ILIKE 'Potential%' OR TF_Facilit = 'Removed')" $(datadir)/nyclines.shp $(datadir)/cscl_bike_routes/merge.shp
+	rm -rf $(datadir)/cscl_bike_routes/merge.*
 
 nyc_pgsql:
 	ogr2ogr -skipfailures -overwrite -f PostgreSQL PG:"dbname='nycbikelanes' user='nycbikelanes'" $(datadir)/nyclines.shp -nln nyclines

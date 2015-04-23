@@ -47,7 +47,7 @@ nyc_bikelanes:
 	rm -f $(datadir)/nyclines.*
 	ogr2ogr -t_srs EPSG:4326 -f "ESRI Shapefile" $(datadir)/cscl_bike_routes/merge.shp $(datadir)/cscl_bike_routes/update_20140401/DOTBikeRouteChanges_20141117to20150320.shp 
 	ogr2ogr -t_srs EPSG:4326 -f "ESRI Shapefile" -update -append $(datadir)/cscl_bike_routes/merge.shp $(datadir)/cscl_bike_routes/original/CSCL_BikeRoute.shp  -nln merge             
-	ogr2ogr -where "NOT (FT_Facilit = 'Bike-Friendly Parking' OR FT_Facilit ILIKE 'Potential%' OR FT_Facilit = 'Removed' OR TF_Facilit = 'Bike-Friendly Parking' OR TF_Facilit ILIKE 'Potential%' OR TF_Facilit = 'Removed')" $(datadir)/nyclines.shp $(datadir)/cscl_bike_routes/merge.shp
+	ogr2ogr -where "NOT (FT_Facilit IN ('Bike-Friendly Parking', 'Removed', 'Link', 'Stairs') OR FT_Facilit ILIKE 'Potential%' OR TF_Facilit IN ('Bike-Friendly Parking', 'Removed', 'Link', 'Stairs') OR TF_Facilit ILIKE 'Potential%')" $(datadir)/nyclines.shp $(datadir)/cscl_bike_routes/merge.shp
 	rm -rf $(datadir)/cscl_bike_routes/merge.*
 
 nyc_pgsql:

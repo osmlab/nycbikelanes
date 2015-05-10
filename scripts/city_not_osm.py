@@ -10,4 +10,5 @@ def instruction(properties):
 
 
 def get_facility(properties):
-    return '/'.join(filter(None, [properties['ft_facilit'], properties['tf_facilit']]))
+    return '/'.join(list(set(filter(None, [properties['ft_facilit'],
+                                           properties['tf_facilit']]))))

@@ -58,3 +58,5 @@ nyc: nyc_bikelanes nyc_pgsql
 city_not_osm:
 	rm challenges/city_not_osm/data.geojson
 	ogr2ogr -f "GeoJSON" challenges/city_not_osm/data.geojson PG:"dbname='nycbikelanes' user='nycbikelanes'" -sql "`cat challenges/city_not_osm/select_data.sql`"
+	
+	cd scripts && python geojson2maproulette.py --instruction_module city_not_osm < ../challenges/city_not_osm/data.geojson > ../challenges/city_not_osm/data.json

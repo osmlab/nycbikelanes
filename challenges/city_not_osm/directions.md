@@ -37,6 +37,23 @@ detailed list of potential bike lane scenarios and how you should tag them. The
 page helpfully depicts bike lane situations and lists the tags you should use
 for each. 
 
+### Types of bike lanes
+
+In NYC we'll commonly see four types of bike lanes:
+
+ 1. Completely separate bike lanes. Think the lanes on the west side of
+    Manhattan.
+ 2. Bike lanes that are part of a road but are separated from traffic (eg by a
+    row of parking). Think the lanes that run along 1st and 2nd Ave in
+    Manhattan. The city refers to these as Class I bike lanes.
+ 3. Bike lanes that are part of a road but are only separated from traffic by a
+    line of paint. The city refers to these as Class II bike lanes.
+ 4. Parts of roads that have a bicycle painted on them with arrows. These aren't
+    separated from traffic at all and are simply gentle reminders that drivers
+    are supposed to share the road with bicyclists. These are appropriately
+    called shared lanes or "sharrows". The city refers to these as Class III
+    bike lanes.
+
 ### General guidelines
 
  * Only use [highway=cycleway](http://wiki.openstreetmap.org/wiki/Tag:highway%3Dcycleway)

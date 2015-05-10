@@ -54,6 +54,18 @@ In NYC we'll commonly see four types of bike lanes:
     called shared lanes or "sharrows". The city refers to these as Class III
     bike lanes.
 
+### Mapping each bike lane type
+
+ 1. Separate bike lanes. Use [highway=cycleway](http://wiki.openstreetmap.org/wiki/Tag:highway%3Dcycleway).
+ 2. Class I bike lanes. Use cycleway=track if the lane is on both sides,
+    cycleway:left=track or cycleway:right=track otherwise.
+ 3. Class II bike lanes. Use cycleway=lane if on both sides, else be sure to add
+    :left or :right (see above).
+ 4. Class III bike lanes. Use
+    [cycleway=shared_lane](http://wiki.openstreetmap.org/wiki/Proposed_features/shared_lane)
+    and be sure to indicate which side of the street the lane is on as
+    necessary.
+
 ### General guidelines
 
  * Only use [highway=cycleway](http://wiki.openstreetmap.org/wiki/Tag:highway%3Dcycleway)

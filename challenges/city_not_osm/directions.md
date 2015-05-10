@@ -37,7 +37,7 @@ detailed list of potential bike lane scenarios and how you should tag them. The
 page helpfully depicts bike lane situations and lists the tags you should use
 for each. 
 
-Here are some general guidelines:
+### General guidelines
 
  * Only use [highway=cycleway](http://wiki.openstreetmap.org/wiki/Tag:highway%3Dcycleway)
    if the bike lane is not on a road.

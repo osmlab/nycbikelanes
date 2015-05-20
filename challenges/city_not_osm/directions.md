@@ -48,6 +48,8 @@ In NYC we'll commonly see four types of bike lanes:
  2. Bike lanes that are part of a road but are separated from traffic (eg by a
     row of parking). Think the lanes that run along 1st and 2nd Ave in
     Manhattan. The city refers to these as Class I bike lanes.
+    
+    ![bike tracks](../../images/bike-track.png)
  3. Bike lanes that are part of a road but are only separated from traffic by a
     line of paint. The city refers to these as Class II bike lanes.
     

@@ -1,6 +1,11 @@
 """
 Provide instructions for adding a bike lane given its properties.
 """
+
+
+directions_url = 'https://github.com/osmlab/nycbikelanes/blob/master/challenges/city_not_osm/directions.md'
+
+
 def instruction(properties):
     instruction = 'Add this class %s bike lane' % properties['facilitycl']
     if properties['street_1']:
@@ -9,6 +14,7 @@ def instruction(properties):
     facility = get_facility(properties).lower()
     if facility:
         instruction += " The city's data says it is %s." % facility
+    instruction += '<p><strong><a href="%s" target="_blank">View more detailed directions</a></strong></p>' % directions_url
     return instruction
 
 

@@ -9,6 +9,7 @@ def instruction(properties):
     facility = get_facility(properties).lower()
     if facility:
         instruction += " The city's data says it is %s." % facility
+    return instruction
 
 
 def get_facility(properties):

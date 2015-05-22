@@ -3,6 +3,15 @@ Provide instructions for adding a bike lane given its properties.
 """
 
 
+facility_translations = {
+    'bridge': 'on a bridge',
+    'dirt trail': 'part of a dirt trail',
+    'greenway': 'part of a greenway',
+    'protected path': 'part of a protected path',
+    'signed route': 'part of a signed route',
+    'standard': 'part of a standard bike lane',
+}
+
 directions_url = 'https://github.com/osmlab/nycbikelanes/blob/master/challenges/city_not_osm/directions.md'
 
 
@@ -19,5 +28,6 @@ def instruction(properties):
 
 
 def get_facility(properties):
-    return '/'.join(list(set(filter(None, [properties['ft_facilit'],
-                                           properties['tf_facilit']]))))
+    facilities = list(set(filter(None, [properties['ft_facilit'], properties['tf_facilit']])))
+    facilities = map(lambda f: facility_translations.get(f.lower(), f), facilities)
+    return '/'.join(facilities)

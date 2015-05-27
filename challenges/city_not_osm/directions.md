@@ -62,6 +62,7 @@ In NYC we'll commonly see four types of bike lanes:
     bike lanes.
     
     ![sharrows](../../images/sharrows.png)
+    ![sharrows](../../images/sharrows-surface.jpg)
 
 ### Mapping each bike lane type
 

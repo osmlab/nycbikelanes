@@ -54,6 +54,7 @@ In NYC we'll commonly see four types of bike lanes:
     line of paint. The city refers to these as Class II bike lanes.
     
     ![bike lanes](../../images/bike-lane.png)
+    ![bike lanes](../../images/bike-lane-surface.png)
  4. Parts of roads that have a bicycle painted on them with arrows. These aren't
     separated from traffic at all and are simply gentle reminders that drivers
     are supposed to share the road with bicyclists. These are appropriately

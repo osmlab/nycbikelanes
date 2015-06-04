@@ -1,3 +1,5 @@
+**[Our first MapRoulette challenge is online--check it out!](http://maproulette.org/#t=nycbikelanes-missing/)**
+
 nycbikelanes
 ============
 

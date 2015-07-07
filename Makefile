@@ -65,3 +65,7 @@ city_not_osm_snapshot: osm
 	mkdir -p challenges/city_not_osm/progress/`date +"%Y%m%d"`
 	ogr2ogr -f "GeoJSON" challenges/city_not_osm/progress/`date +"%Y%m%d"`/osm.geojson PG:"dbname='nycbikelanes' user='nycbikelanes'" -sql "SELECT * FROM osmlines"
 	ogr2ogr -f "GeoJSON" challenges/city_not_osm/progress/`date +"%Y%m%d"`/to_add.geojson PG:"dbname='nycbikelanes' user='nycbikelanes'" -sql "`cat challenges/city_not_osm/select_data.sql`"
+
+city_not_osm_skipped:
+	python scripts/maproulette_by_status.py --challenge-id=nycbikelanes-missing --status=skipped > challenges/city_not_osm/skipped.json
+	python scripts/tasks_from_geojson.py challenges/city_not_osm/data.geojson challenges/city_not_osm/skipped.json > challenges/city_not_osm/skipped.geojson

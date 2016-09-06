@@ -13,9 +13,11 @@ boroughs: clean_boroughs
 	@echo "Downloading boroughs..."
 	curl -L "https://data.cityofnewyork.us/api/geospatial/tv64-9x69?method=export&format=Shapefile" -o data/boroughs/boroughs.zip
 	unzip data/boroughs/boroughs.zip -d data/boroughs/
+	rm data/boroughs/boroughs.zip
 	
 	@echo "Dissolving boroughs"
-	ogr2ogr -simplify 0.2 -t_srs EPSG:4326 -overwrite data/boroughs/dissolved.shp data/boroughs/nybbwi_14d/nybbwi.shp -dialect sqlite -sql "select ST_union(ST_buffer(Geometry,0.001)) from nybbwi"
+	ogr2ogr -simplify 0.01 -t_srs EPSG:4326 -overwrite data/boroughs/boroughs.shp data/boroughs/*.shp
+	ogr2ogr data/boroughs/dissolved.shp data/boroughs/boroughs.shp -dialect sqlite -sql "select ST_union(ST_buffer(Geometry,0.001)) from boroughs"
 
 clean_osm:
 	rm -rf $(datadir)/osmlines.*

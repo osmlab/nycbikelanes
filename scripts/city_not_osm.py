@@ -17,8 +17,8 @@ directions_url = 'https://github.com/osmlab/nycbikelanes/blob/master/challenges/
 
 def instruction(properties):
     instruction = 'Add this class %s bike lane' % properties['facilitycl']
-    if properties['street_1']:
-        instruction += ' on %s' % properties['street_1']
+    if properties['street']:
+        instruction += ' on %s' % properties['street']
     instruction += '.'
     facility = get_facility(properties).lower()
     if facility:

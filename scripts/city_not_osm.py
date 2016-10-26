@@ -22,8 +22,8 @@ def instruction(properties):
     instruction += '.'
     facility = get_facility(properties).lower()
     if facility:
-        instruction += " The city's data says it is %s." % facility
-    instruction += '<p><strong><a href="%s" target="_blank">View more detailed directions</a></strong></p>' % directions_url
+        instruction += " The city's data says it is %s.\n\n" % facility
+    instruction += '**[View more detailed directions](%s)**' % directions_url
     return instruction
 
 

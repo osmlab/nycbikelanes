@@ -28,9 +28,15 @@ if __name__ == '__main__':
 
 
     tasks = []
+    id = 0
     for feature in input_geojson['features']:
+        instruction = instruction_function(feature['properties'])
+        name = '%d' % id
+        id += 1
+        del feature['properties']
         tasks.append({
+            'name': name,
             'geometries': geojson.FeatureCollection([feature,]),
-            'instruction': instruction_function(feature['properties']),
+            'instruction': instruction,
         })
     json.dump(tasks, output_json)

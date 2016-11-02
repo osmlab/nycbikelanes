@@ -1,0 +1,2 @@
+API_KEY="2-ax6LsEOhRNOhMExtsnZdInFKoMkjIpnB6d5199Oq6ikIpGFcemVXCmuM7pgstAik58g60umVgAykfQ=="
+CHALLENGE_ID=986
